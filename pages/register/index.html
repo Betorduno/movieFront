@@ -1,0 +1,60 @@
+<div class="register">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Sign Up</h3>
+			</div>
+			<div class="card-body">
+			<validation-observer  v-slot="{ passes }">
+
+				<form @submit.prevent="passes(signUp)">
+
+				<Validation-provider class="input-group form-group d-flex flex-column " rules="required|min:5|max:30|alpha" name="Names" v-slot="{ errors }">
+						<input v-model="register.names" type="text" class="form-control w-100" placeholder="Names">
+						<span class="text-break text-light" v-show="errors[0]">
+							The field must be greater than 5 characters
+						</span>
+				</Validation-provider>
+
+				<Validation-provider class="input-group form-group d-flex flex-column " rules="required|min:5|max:30|alpha" name="Nicknames" v-slot="{ errors }">
+					<input v-model="register.nickname" type="text" class="form-control w-100" placeholder="Nickname">
+					<span class="text-break text-light" v-show="errors[0]">
+						The field must be greater than 5 characters
+					</span>
+				</Validation-provider>
+
+				<Validation-provider class="input-group form-group d-flex flex-column " rules="required|email" name="Email" v-slot="{ errors }">
+					<input type="email" v-model="register.email" class="form-control w-100" placeholder="Email">
+					<span class="text-break text-light"  v-show="errors[0]">
+						The email field is invalid
+					</span>
+				</Validation-provider>
+
+				<Validation-provider class="input-group form-group d-flex flex-column " rules="required|min:8|alpha_num|verify_password" name="Email" v-slot="{ errors }" vid="passwordReg">
+					<input type="password" v-model="register.password" class="form-control w-100" placeholder="password">
+					<span class="text-break text-light"  v-show="errors[0]">
+						The password must be alphanumeric. Ejemplo Bxp01AAA
+					</span>
+				</Validation-provider>
+
+				<Validation-provider class="input-group form-group d-flex flex-column " rules="required|min:8|alpha_num|confirmed:passwordReg" name="Email" v-slot="{ errors }" >
+					<input type="password"  v-model="register.confirm_password" class="form-control w-100" placeholder="Repeat password">
+					<span class="text-break text-light"  v-show="errors[0]">
+						Passwords do not match
+					</span>
+				</Validation-provider>
+
+					<div class="form-group">
+						<button type="submit" class="btn float-right login_btn">Register</button>
+					</div>
+				</form>
+			</validation-observer>
+			</div>
+			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+					Do you already have an account?<a href="/">Login</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

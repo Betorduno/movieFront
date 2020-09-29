@@ -1,0 +1,37 @@
+<div class="login">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Sign In</h3>
+			</div>
+			<div class="card-body">
+				<validation-observer  v-slot="{ passes }">
+					<form @submit.prevent="passes(loguin)">
+					<Validation-provider class="input-group form-group d-flex flex-column " rules="required|email" name="Email" v-slot="{ errors }">
+						<input type="email" v-model="login.email" class="form-control w-100" placeholder="Email">
+						<span class="text-break text-light"  v-show="errors[0]">
+							The email field is invalid
+						</span>
+					</Validation-provider>
+				
+					<Validation-provider class="input-group form-group d-flex flex-column " rules="required" name="Email" v-slot="{ errors }" vid="passwordReg">
+						<input type="password" v-model="login.password" class="form-control w-100" placeholder="password">
+						<span class="text-break text-light"  v-show="errors[0]">
+							The password is required.
+						</span>
+					</Validation-provider>
+					
+					<div class="form-group">
+						<button type="submit" class="btn float-right login_btn">Login</button>
+					</div>
+				</form>
+			</validation-observer>
+			</div>
+			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+					Don't have an account?<a href="/register">Sign Up</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

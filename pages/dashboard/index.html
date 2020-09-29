@@ -1,0 +1,100 @@
+<div class="dashboard">
+	
+	<div class="container-xl">
+		<div class="w-100 d-flex align-items-center align-content-center justify-content-end " style="height: 80px;">
+			<div v-on:click="signOff" style="width: 200px;" class="btn ml-3  d-flex align-items-center align-content-center justify-content-center  btn-danger" data-toggle="modal"><i class="material-icons mr-3">&#xE15C;</i> <span>Cerrar sesion</span></div>
+		</div>
+		<div class="table-responsive">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-sm-6">
+							<h2>Manage <b>movie</b></h2>
+						</div>
+						<div class="col-sm-6">
+							<a v-b-modal.modal-prevent-closing class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New movie</span></a>					
+						</div>
+					</div>
+				</div>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Title</th>
+							<th>sipnosis</th>
+							<th>Year</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="movie in movieAll">
+							<td>{{movie.title}}</td>
+							<td>{{movie.sipnosis || 'None'}}</td>
+							<td>{{movie.year}}</td>
+							<td>
+								<a v-b-modal.modal-edit @click="filmId(movie.id)"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+								<a v-b-modal.modal-delete @click="filmId(movie.id)" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							</td>
+						</tr>	
+					</tbody>
+				</table>
+			</div>
+		</div>        
+	</div>
+	<!-- create Modal HTML -->
+		
+<b-modal
+	id="modal-prevent-closing"
+	ref="modal"
+	title="Create movie"
+	@show="resetModal"
+	@hidden="resetModal"
+	@ok="handleOk"
+>
+	<form ref="form" @submit.stop.prevent="createMovie">
+		<b-form-group :state="state.titleState" label="Title" label-for="title-input" invalid-feedback="Title is required">
+			<b-form-input id="name-input" v-model="create.title" :state="state.titleState" required ></b-form-input>
+		</b-form-group>
+		<b-form-group  label="Sipnosis" label-for="title-input">
+			<b-form-textarea id="textarea" v-model="create.sipnosis" placeholder="Enter something..." rows="3" max-rows="6"></b-form-textarea>
+		</b-form-group>
+		<b-form-group :state="state.yearState" label="Year" label-for="title-input" invalid-feedback="Enter a year equal to or greater than the current one.">
+			<b-form-input id="name-input" type="number" :min="min" :max="max" v-model="create.year" :state="state.yearState" required ></b-form-input>
+		</b-form-group>
+	</form>
+</b-modal>
+	
+	<!-- Edit Modal HTML -->
+<b-modal
+	id="modal-edit"
+	ref="modal"
+	title="Update movie"
+	@ok="handleUpdate"
+>
+	<form ref="form" @submit.stop.prevent="updateMovie()">
+		<b-form-group :state="state.titleState" label="Title" label-for="title-input" invalid-feedback="Title is required">
+			<b-form-input id="name-input" v-model="create.title" :state="state.titleState" required ></b-form-input>
+		</b-form-group>
+		<b-form-group  label="Sipnosis" label-for="title-input">
+			<b-form-textarea id="textarea" v-model="create.sipnosis" placeholder="Enter something..." rows="3" max-rows="6"></b-form-textarea>
+		</b-form-group>
+		<b-form-group :state="state.yearState" label="Year" label-for="title-input" invalid-feedback="Enter a year equal to or greater than the current one.">
+			<b-form-input id="name-input" type="number" :min="min" :max="max" v-model="create.year" :state="state.yearState" required ></b-form-input>
+		</b-form-group>
+	</form>
+</b-modal>
+
+	<!-- Delete Modal HTML -->
+<b-modal
+	id="modal-delete"
+	ref="modal"
+	title="Delete movie"
+	@ok="handleDelete"
+>
+	<form ref="form" @submit.stop.prevent="updateMovie()">
+		<div class="modal-body">					
+			<p>Are you sure you want to delete these Records?</p>
+			<p class="text-warning"><small>This action cannot be undone.</small></p>
+		</div>
+	</form>
+</b-modal>
+</div>
