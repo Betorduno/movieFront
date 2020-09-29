@@ -39,7 +39,7 @@ export default Vue.extend({
           this.$swal({
             position: 'center',
             icon: 'error',
-            title: 'Error processing the login!',
+            title: 'Error processing the register!',
             showConfirmButton: false,
             timer: 2500
           });

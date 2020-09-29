@@ -1,0 +1,23 @@
+[
+  {
+    "name": "dashboard",
+    "path": "/dashboard",
+    "component": "/Users/admin/Documents/movieFront/pages/dashboard/index.vue",
+    "chunkName": "pages/dashboard/index",
+    "_name": "_d07d90f6"
+  },
+  {
+    "name": "register",
+    "path": "/register",
+    "component": "/Users/admin/Documents/movieFront/pages/register/index.vue",
+    "chunkName": "pages/register/index",
+    "_name": "_a892b730"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/admin/Documents/movieFront/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_22b3b680"
+  }
+]

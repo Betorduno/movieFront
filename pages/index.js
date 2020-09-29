@@ -23,7 +23,7 @@ export default Vue.extend({
           this.$swal({
             position: 'center',
             icon: 'success',
-            title: 'Your account was registered!',
+            title: 'Welcome!',
             showConfirmButton: false,
             timer: 2500
           });
@@ -34,7 +34,7 @@ export default Vue.extend({
           this.$swal({
             position: 'center',
             icon: 'error',
-            title: 'Error processing the record!',
+            title: 'Error processing the login!',
             showConfirmButton: false,
             timer: 2500
           });
